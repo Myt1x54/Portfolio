@@ -6,8 +6,8 @@ export const profile = {
   role: "Computer Science Undergraduate",
   location: "Rawalpindi, Pakistan",
   email: "abdulmoiz56898@gmail.com",
-  github: "https://github.com/", // TODO: replace with your GitHub URL
-  linkedin: "https://linkedin.com/", // TODO: replace with your LinkedIn URL
+  github: "https://github.com/Myt1x54",
+  linkedin: "https://www.linkedin.com/in/abdul-moiz-615781365/",
   tagline: "I build Android apps, backend systems & data-structure-driven software.",
   summary:
     "Computer Science undergraduate with hands-on experience in software development, mobile applications, and backend systems. Skilled in Android development using Kotlin, designing RESTful APIs with Node.js and PHP, and working with relational databases such as MySQL and SQL Server. Strong foundation in data structures, algorithms, and software design principles.",
