@@ -1,6 +1,28 @@
+import { useState } from "react";
 import { profile } from "../data/portfolio";
 
 export default function Contact() {
+  const [copied, setCopied] = useState(false);
+
+  // Gmail compose in a new tab — works with a single click even when the
+  // visitor has no desktop mail app configured (mailto: would silently fail).
+  const gmailCompose =
+    "https://mail.google.com/mail/?view=cm&fs=1&to=" +
+    encodeURIComponent(profile.email) +
+    "&su=" +
+    encodeURIComponent("Hello Abdul — from your portfolio");
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(profile.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch {
+      // Clipboard blocked (e.g. insecure context) — fall back to mailto.
+      window.location.href = `mailto:${profile.email}`;
+    }
+  };
+
   return (
     <section id="contact" className="section contact">
       <div className="container contact__inner">
@@ -16,9 +38,17 @@ export default function Contact() {
         </div>
 
         <div className="contact__actions reveal">
-          <a href={`mailto:${profile.email}`} className="btn btn-primary">
-            ✉ {profile.email}
+          <a
+            href={gmailCompose}
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn-primary"
+          >
+            ✉ Email me
           </a>
+          <button type="button" className="btn" onClick={copyEmail}>
+            {copied ? "✓ copied!" : `⧉ ${profile.email}`}
+          </button>
         </div>
 
         <div className="contact__links reveal">
@@ -30,7 +60,9 @@ export default function Contact() {
             LinkedIn
           </a>
           <span className="contact__sep">/</span>
-          <a href={`mailto:${profile.email}`}>Email</a>
+          <a href={gmailCompose} target="_blank" rel="noreferrer">
+            Email
+          </a>
         </div>
       </div>
 
